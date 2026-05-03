@@ -59,3 +59,18 @@ python log_analyzer.py
 
 ### Start dashboard
 python -m streamlit run dashboard.py
+
+
+## Docker Support
+
+This project supports Docker containerization.
+
+### Build Docker Image
+```bash
+docker build -t ai-log-analyser .
+```
+
+### Run Docker Container
+```bash
+docker run -p 8501:8501 ai-log-analyser
+```
