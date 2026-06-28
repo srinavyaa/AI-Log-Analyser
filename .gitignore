@@ -1,3 +1,6 @@
+.env
+.venv/
 app.log
 anomalies.log
 __pycache__/
+*.pyc

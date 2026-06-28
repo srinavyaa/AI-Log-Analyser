@@ -1,5 +1,8 @@
 import time
 import random
+from datetime import datetime
+
+from app.ingestion.ingest import ingest_log
 
 levels = ["ERROR", "ERROR", "WARNING", "INFO"]
 
@@ -9,15 +12,24 @@ messages = {
     "WARNING": ["High memory usage", "Slow response"]
 }
 
+sources = [
+    "Authentication Service",
+    "API Gateway",
+    "Database",
+    "Web Server"
+]
+
 while True:
-    level = random.choice(levels)
-    message = random.choice(messages[level])
+    log = {
+    "timestamp": datetime.now(),
+    "log_level": "ERROR",
+    "source": "Web Server",
+    "message": None
+}
+    log["message"] = random.choice(messages[log["log_level"]])
 
-    log_line = f"{level}: {message}\n"
+    ingest_log(log)
 
-    with open("app.log", "a") as f:
-        f.write(log_line)
-
-    print("Generated:", log_line.strip())
+    print("Generated:", log)
 
     time.sleep(2)
